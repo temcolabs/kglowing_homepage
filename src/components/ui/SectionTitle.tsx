@@ -1,12 +1,14 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 
 interface SectionTitleProps {
   subtitle?: string;
-  title: string;
-  description?: string;
+  title: React.ReactNode;
+  description?: React.ReactNode;
   light?: boolean;
+  compact?: boolean;
 }
 
 export default function SectionTitle({
@@ -14,6 +16,7 @@ export default function SectionTitle({
   title,
   description,
   light = false,
+  compact = false,
 }: SectionTitleProps) {
   return (
     <motion.div
@@ -21,7 +24,7 @@ export default function SectionTitle({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
-      className="text-center mb-12 md:mb-16"
+      className={`text-center ${compact ? "mb-8 md:mb-10 lg:mb-12" : "mb-12 md:mb-16 lg:mb-20"}`}
     >
       {subtitle && (
         <span className={`text-sm font-semibold tracking-widest uppercase ${light ? "text-blue-300" : "text-primary"}`}>
@@ -29,12 +32,12 @@ export default function SectionTitle({
         </span>
       )}
       <h2
-        className={`text-3xl md:text-4xl font-bold mt-2 mb-4 ${light ? "text-white" : "text-foreground"}`}
+        className={`font-bold mt-2 mb-3 ${compact ? "text-xl md:text-2xl lg:text-3xl leading-snug" : "text-2xl md:text-3xl lg:text-4xl mb-4"} ${light ? "text-white" : "text-foreground"}`}
       >
         {title}
       </h2>
       {description && (
-        <p className={`max-w-2xl mx-auto text-lg ${light ? "text-gray-300" : "text-muted-foreground"}`}>
+        <p className={`mx-auto ${compact ? "max-w-3xl text-sm md:text-base leading-relaxed" : "max-w-2xl text-base md:text-lg leading-relaxed"} ${light ? "text-gray-300" : "text-muted-foreground"}`}>
           {description}
         </p>
       )}

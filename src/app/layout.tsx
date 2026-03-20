@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR, Open_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const notoSansKR = Noto_Sans_KR({
@@ -12,6 +13,12 @@ const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin"],
   weight: ["300", "400", "600", "700"],
+});
+
+const iowanOldStyle = localFont({
+  src: "../../public/fonts/IowanOldStyleBTPro-Roman.ttf",
+  variable: "--font-iowan-old-style",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -35,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="scroll-smooth">
       <body
-        className={`${notoSansKR.variable} ${openSans.variable} font-sans antialiased`}
+        className={`${notoSansKR.variable} ${openSans.variable} ${iowanOldStyle.variable} font-sans antialiased`}
       >
         {children}
       </body>
