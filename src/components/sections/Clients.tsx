@@ -83,13 +83,13 @@ export default function Clients() {
                 "linear-gradient(180deg, rgba(34, 34, 34, 0.80) 0%, rgba(0, 0, 0, 0.00) 100%)",
             }}
           >
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-[15%] sm:inset-[12%] flex items-center justify-center">
               <Image
                 src={client.logo}
                 alt={client.name}
                 width={Math.round(client.w / 3)}
                 height={Math.round(client.h / 3)}
-                className="object-contain max-w-[80%] max-h-[70%]"
+                className="object-contain max-w-full max-h-full"
               />
             </div>
           </div>

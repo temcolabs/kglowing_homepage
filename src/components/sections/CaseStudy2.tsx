@@ -46,7 +46,7 @@ export default function CaseStudy2() {
                 alt={`${brand.name} RoAS 차트`}
                 width={400}
                 height={300}
-                className="w-full h-auto rounded-xl"
+                className="w-full h-auto"
               />
               {/* 브랜드명 */}
               <p className="text-center font-semibold text-foreground text-sm">

@@ -26,7 +26,7 @@ export const accountManagementData: ServiceSectionData = {
   statsCards: [
     { label: "성공적으로 운영한 계정 컨설팅", value: "100+" },
     { label: "아마존 마켓플레이스 경험", value: "6+" },
-    { label: "Proven Amazon Ads & Seller Central Expertise" },
+    { label: "Proven Amazon Ads & Seller Central Expertise", value: "3+" },
   ],
   blocks: [
     {

@@ -18,7 +18,7 @@ const countryOptions = ["북미", "중동", "유럽", "호주"];
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
-  const [showPrivacyText, setShowPrivacyText] = useState(false);
+
 
   const {
     register,
@@ -210,44 +210,6 @@ export default function Contact() {
             )}
           </div>
 
-          {/* Privacy Agreement */}
-          <div className="mb-8">
-            <label className="flex items-start gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                {...register("privacyAgreed")}
-                className="w-4 h-4 mt-0.5 text-primary rounded focus:ring-primary"
-              />
-              <span className="text-sm text-foreground">
-                개인정보 수집 및 이용에 동의합니다.{" "}
-                <button
-                  type="button"
-                  onClick={() => setShowPrivacyText(!showPrivacyText)}
-                  className="text-primary underline"
-                >
-                  {showPrivacyText ? "닫기" : "자세히 보기"}
-                </button>
-              </span>
-            </label>
-            {errors.privacyAgreed && (
-              <p className={errorClass}>{errors.privacyAgreed.message}</p>
-            )}
-            {showPrivacyText && (
-              <div className="mt-3 p-4 bg-muted rounded-lg text-xs text-muted-foreground leading-relaxed">
-                <p className="font-semibold mb-2">개인정보 수집 및 이용 동의</p>
-                <p>
-                  1. 수집 항목: 회사명, 성함, 연락처, 이메일, 문의 내용
-                  <br />
-                  2. 수집 목적: 서비스 문의 접수 및 상담 진행
-                  <br />
-                  3. 보유 기간: 문의 접수일로부터 1년, 이후 파기
-                  <br />
-                  4. 귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 수 있으며, 동의 거부 시
-                  상담 신청이 제한됩니다.
-                </p>
-              </div>
-            )}
-          </div>
 
           {/* Submit Button & Status */}
           <div className="text-center">

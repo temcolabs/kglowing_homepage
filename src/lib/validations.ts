@@ -16,9 +16,6 @@ export const contactSchema = z.object({
     .array(z.string())
     .min(1, "희망 진출 국가를 하나 이상 선택해주세요."),
   message: z.string().min(1, "문의 내용을 입력해주세요."),
-  privacyAgreed: z.literal(true, {
-    error: "개인정보 수집 및 이용에 동의해주세요.",
-  }),
 });
 
 export type ContactFormValues = z.infer<typeof contactSchema>;

@@ -17,7 +17,7 @@ const services = [
   },
   {
     id: "service-content",
-    title: "Enhanced Brand Content Service (Premium A+ Contents 제작, Cataloguing Service)",
+    title: "Enhanced Brand Content Service\n(Premium A+ Contents 제작, Cataloguing Service)",
   },
 ];
 
@@ -66,7 +66,7 @@ export default function CoreServices() {
                   <p className="text-primary text-xs font-semibold tracking-widest uppercase mb-3">
                     0{index + 1}
                   </p>
-                  <h3 className="font-bold text-base sm:text-lg text-foreground leading-snug group-hover:text-primary transition-colors">
+                  <h3 className="font-bold text-base sm:text-lg text-foreground leading-snug group-hover:text-primary transition-colors whitespace-pre-line">
                     {service.title}
                   </h3>
                 </div>

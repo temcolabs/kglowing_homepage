@@ -24,5 +24,4 @@ export interface ContactFormData {
   services: string[];
   message: string;
   file?: FileList;
-  privacyAgreed: boolean;
 }
