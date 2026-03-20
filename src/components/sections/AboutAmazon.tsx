@@ -29,7 +29,7 @@ const whyCards = [
 
 export default function AboutAmazon() {
   return (
-    <section id="about-amazon" className="py-12 md:py-20 bg-muted">
+    <section id="about-amazon" className="py-16 md:py-28 lg:py-32 bg-muted">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* 섹션 헤더 */}

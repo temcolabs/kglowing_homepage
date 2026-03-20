@@ -45,7 +45,7 @@ const packages = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-20 md:py-28 bg-white">
+    <section id="portfolio" className="py-16 md:py-28 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           subtitle="Packages"

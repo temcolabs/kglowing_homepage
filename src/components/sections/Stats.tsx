@@ -14,7 +14,7 @@ export default function Stats() {
   return (
     <section
       id="stats"
-      className="py-20 md:py-28 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 relative overflow-hidden"
+      className="py-16 md:py-28 lg:py-32 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 relative overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-5">
@@ -37,7 +37,7 @@ export default function Stats() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            숫자로 보는 KGlowing
+            숫자로 보는 Kglowing
           </h2>
           <p className="text-gray-300 text-lg">
             신뢰할 수 있는 성과로 증명합니다.

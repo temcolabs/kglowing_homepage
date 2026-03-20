@@ -12,7 +12,7 @@ const brands = [
 
 export default function CaseStudy2() {
   return (
-    <section id="case-study-2" className="py-12 md:py-20 bg-background">
+    <section id="case-study-2" className="py-16 md:py-28 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <motion.div

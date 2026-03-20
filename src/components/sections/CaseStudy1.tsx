@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function CaseStudy1() {
   return (
-    <section id="case-study-1" className="py-12 md:py-20 bg-muted text-foreground">
+    <section id="case-study-1" className="py-16 md:py-28 lg:py-32 bg-muted text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">

@@ -11,7 +11,7 @@ export default function ServiceSection({ data }: Props) {
   const { id, eyebrow, title, description, statsCards, blocks } = data;
 
   return (
-    <section id={id} className="py-12 md:py-20 bg-background">
+    <section id={id} className="py-16 md:py-28 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}

@@ -70,7 +70,7 @@ export default function Contact() {
   const labelClass = "block text-sm font-medium text-foreground mb-1.5";
 
   return (
-    <section id="contact" data-theme="light" className="py-20 md:py-28 bg-muted">
+    <section id="contact" data-theme="light" className="py-16 md:py-28 lg:py-32 bg-muted">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           subtitle="Contact Us"

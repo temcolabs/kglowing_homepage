@@ -40,7 +40,7 @@ const items = [
 
 export default function About() {
   return (
-    <section id="about" className="bg-zinc-950 py-16 md:py-24 lg:py-32">
+    <section id="about" className="bg-zinc-950 py-16 md:py-28 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* 섹션별 교차 레이아웃 */}
