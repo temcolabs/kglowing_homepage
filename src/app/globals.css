@@ -1,15 +1,40 @@
 @import "tailwindcss";
 
+/* Pretendard Variable Font */
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/pretendard/PretendardVariable.woff2') format('woff2-variations');
+}
+
+/* ============================================================
+   DARK THEME (default) — 검정 배경 기반
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a2e;
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
+  --background: #000000;
+  --foreground: #e2e8f0;
+  --primary: #3ddcc0;
+  --primary-dark: #2bb89f;
   --secondary: #f97316;
   --accent: #06b6d4;
-  --muted: #f8fafc;
+  --muted: #111111;
+  --muted-foreground: #94a3b8;
+  --border: #1f1f1f;
+  --card: #141414;
+}
+
+/* ============================================================
+   LIGHT THEME — data-theme="light" 속성을 가진 섹션에 적용
+   ============================================================ */
+[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --muted: #f1f5f9;
   --muted-foreground: #64748b;
   --border: #e2e8f0;
+  --card: #f8fafc;
 }
 
 @theme inline {
@@ -22,12 +47,15 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-sans: var(--font-noto-sans-kr), var(--font-open-sans), sans-serif;
+  --color-card: var(--card);
+  --font-sans: 'Pretendard Variable', var(--font-noto-sans-kr), var(--font-open-sans), sans-serif;
+  --font-pretendard: 'Pretendard Variable', var(--font-noto-sans-kr), sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: 'Pretendard Variable', var(--font-noto-sans-kr), var(--font-open-sans), sans-serif;
 }
 
 /* Smooth scrolling */

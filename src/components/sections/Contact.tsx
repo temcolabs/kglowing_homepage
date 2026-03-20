@@ -1,28 +1,24 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { contactSchema, type ContactFormValues } from "@/lib/validations";
 import SectionTitle from "@/components/ui/SectionTitle";
-import Button from "@/components/ui/Button";
+
 
 const serviceOptions = [
-  "아마존 셀링",
-  "아마존 마케팅",
-  "광고 관리",
-  "물류 관리",
-  "최적화 서비스",
-  "데이터 분석",
+  "아마존 신규 입점",
+  "아마존 운영 대행 (입점 완료)",
 ];
+
+const countryOptions = ["북미", "중동", "유럽", "호주"];
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
-  const [fileName, setFileName] = useState<string>("");
   const [showPrivacyText, setShowPrivacyText] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
     register,
@@ -32,7 +28,7 @@ export default function Contact() {
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      services: [],
+      countries: [],
     },
   });
 
@@ -46,13 +42,9 @@ export default function Contact() {
       formData.append("name", data.name);
       formData.append("phone", data.phone);
       formData.append("email", data.email);
-      formData.append("amazonStatus", data.amazonStatus);
-      formData.append("services", JSON.stringify(data.services));
+      formData.append("service", data.service);
+      formData.append("countries", JSON.stringify(data.countries));
       formData.append("message", data.message);
-
-      if (fileInputRef.current?.files?.[0]) {
-        formData.append("file", fileInputRef.current.files[0]);
-      }
 
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -62,8 +54,6 @@ export default function Contact() {
       if (res.ok) {
         setSubmitStatus("success");
         reset();
-        setFileName("");
-        if (fileInputRef.current) fileInputRef.current.value = "";
       } else {
         setSubmitStatus("error");
       }
@@ -75,17 +65,18 @@ export default function Contact() {
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-lg border border-border bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors";
+    "w-full px-4 py-3 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors";
   const errorClass = "text-red-500 text-sm mt-1";
   const labelClass = "block text-sm font-medium text-foreground mb-1.5";
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-muted">
+    <section id="contact" data-theme="light" className="py-20 md:py-28 bg-muted">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           subtitle="Contact Us"
-          title="문의하기"
-          description="아마존 셀링에 관한 모든 것, 편하게 문의해주세요."
+          title={<>브랜드를 글로벌로 키우는 방법은 이미 정해져 있습니다.<br />아마존 비즈니스, Kglowing과 함께하세요.</>}
+          description={<>아래 양식을 통해 문의해주시면 가장 빠른 회신을 받으실 수 있습니다.<br />입점, 광고, 콘텐츠까지 나눠서 고민하지 마세요. Kglowing은 매출이 만들어지는 구조를 설계하고 실행합니다.</>}
+          compact
         />
 
         <motion.form
@@ -94,13 +85,13 @@ export default function Contact() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white rounded-2xl shadow-lg p-6 md:p-10"
+          className="bg-card rounded-2xl border border-border shadow-2xl shadow-black/40 p-6 md:p-10"
         >
           {/* 2-column layout on desktop */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label className={labelClass}>
-                브랜드 (회사명) <span className="text-red-500">*</span>
+                브랜드 홈페이지 주소 <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -151,45 +142,55 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Amazon Status */}
-          <div className="mb-6">
-            <label className={labelClass}>
-              아마존 입점 여부 <span className="text-red-500">*</span>
-            </label>
-            <select className={inputClass} {...register("amazonStatus")}>
-              <option value="">선택해주세요</option>
-              <option value="yes">예, 이미 입점했습니다</option>
-              <option value="no">아니오, 아직 입점 전입니다</option>
-              <option value="preparing">입점 준비 중입니다</option>
-            </select>
-            {errors.amazonStatus && (
-              <p className={errorClass}>{errors.amazonStatus.message}</p>
-            )}
-          </div>
-
-          {/* Services Checkboxes */}
+          {/* 희망 서비스 - Radio */}
           <div className="mb-6">
             <label className={labelClass}>
               희망 서비스 <span className="text-red-500">*</span>
             </label>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
               {serviceOptions.map((service) => (
                 <label
                   key={service}
-                  className="flex items-center gap-2 p-3 rounded-lg border border-border hover:border-primary/50 transition-colors cursor-pointer"
+                  className="flex items-center gap-2 p-3 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors cursor-pointer"
                 >
                   <input
-                    type="checkbox"
+                    type="radio"
                     value={service}
-                    {...register("services")}
-                    className="w-4 h-4 text-primary rounded focus:ring-primary"
+                    {...register("service")}
+                    className="w-4 h-4 text-primary focus:ring-primary"
                   />
-                  <span className="text-sm">{service}</span>
+                  <span className="text-sm text-foreground">{service}</span>
                 </label>
               ))}
             </div>
-            {errors.services && (
-              <p className={errorClass}>{errors.services.message}</p>
+            {errors.service && (
+              <p className={errorClass}>{errors.service.message}</p>
+            )}
+          </div>
+
+          {/* 희망 진출 국가 - Checkbox */}
+          <div className="mb-6">
+            <label className={labelClass}>
+              희망 진출 국가 <span className="text-red-500">*</span>
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mt-2">
+              {countryOptions.map((country) => (
+                <label
+                  key={country}
+                  className="flex items-center gap-2 p-3 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    value={country}
+                    {...register("countries")}
+                    className="w-4 h-4 text-primary rounded focus:ring-primary"
+                  />
+                  <span className="text-sm text-foreground">{country}</span>
+                </label>
+              ))}
+            </div>
+            {errors.countries && (
+              <p className={errorClass}>{errors.countries.message}</p>
             )}
           </div>
 
@@ -209,58 +210,6 @@ export default function Contact() {
             )}
           </div>
 
-          {/* File Upload */}
-          <div className="mb-6">
-            <label className={labelClass}>파일 첨부</label>
-            <div
-              onClick={() => fileInputRef.current?.click()}
-              onDragOver={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-              onDrop={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if (e.dataTransfer.files?.[0]) {
-                  const dt = new DataTransfer();
-                  dt.items.add(e.dataTransfer.files[0]);
-                  if (fileInputRef.current) {
-                    fileInputRef.current.files = dt.files;
-                  }
-                  setFileName(e.dataTransfer.files[0].name);
-                }
-              }}
-              className="border-2 border-dashed border-border rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 transition-colors"
-            >
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={(e) => setFileName(e.target.files?.[0]?.name || "")}
-                className="hidden"
-              />
-              {fileName ? (
-                <p className="text-sm text-foreground">
-                  📎 {fileName}
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFileName("");
-                      if (fileInputRef.current) fileInputRef.current.value = "";
-                    }}
-                    className="ml-2 text-red-500 hover:text-red-700"
-                  >
-                    삭제
-                  </button>
-                </p>
-              ) : (
-                <p className="text-sm text-muted-foreground">
-                  클릭하거나 파일을 드래그하여 업로드하세요.
-                </p>
-              )}
-            </div>
-          </div>
-
           {/* Privacy Agreement */}
           <div className="mb-8">
             <label className="flex items-start gap-2 cursor-pointer">
@@ -269,7 +218,7 @@ export default function Contact() {
                 {...register("privacyAgreed")}
                 className="w-4 h-4 mt-0.5 text-primary rounded focus:ring-primary"
               />
-              <span className="text-sm">
+              <span className="text-sm text-foreground">
                 개인정보 수집 및 이용에 동의합니다.{" "}
                 <button
                   type="button"
@@ -302,14 +251,16 @@ export default function Contact() {
 
           {/* Submit Button & Status */}
           <div className="text-center">
-            <Button
+            <button
               type="submit"
-              size="lg"
               disabled={isSubmitting}
-              className="w-full md:w-auto min-w-[200px]"
+              className="mx-auto flex items-center justify-center w-full md:w-auto min-w-50 h-12 rounded-full text-white font-semibold text-base uppercase cursor-pointer border-0 appearance-none disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{
+                background: "linear-gradient(93deg, #00ffd2b3 -1.1%, #00a1ffb3 101.31%)",
+              }}
             >
               {isSubmitting ? "전송 중..." : "문의 전송"}
-            </Button>
+            </button>
 
             {submitStatus === "success" && (
               <motion.p

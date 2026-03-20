@@ -1,83 +1,98 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Button from "@/components/ui/Button";
 
 export default function Hero() {
+  const handleContactClick = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-          backgroundSize: "40px 40px",
-        }} />
-      </div>
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      {/* Background video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/brand-main-1.mov"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-blue-300 text-sm font-medium mb-6">
-            Amazon Global Selling Partner
-          </span>
-        </motion.div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50" />
 
+      {/* Content */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6"
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-normal text-white leading-tight mb-6 font-(family-name:--font-iowan-old-style)"
         >
-          글로벌 시장을 향한
+          A Trusted Full-Service
           <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-            가장 확실한 파트너
-          </span>
+          Amazon Agency
+          <br />
+          for High Growth
+          <br />
+          Ecommerce Brands
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10"
+          transition={{ duration: 0.7, delay: 0.25 }}
+          className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto mb-3"
         >
-          아마존 입점부터 마케팅, 물류, 데이터 분석까지
-          <br className="hidden md:block" />
-          브랜드 성장의 모든 과정을 함께합니다.
+          Kglowing은 아마존 성장을 가장 잘 이해하는 전문 파트너로서, 전략부터 실행까지
+          <br />
+          모든 과정을 통합적으로 지원합니다.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto mb-10"
+        >
+          글로벌 진출에 필요한 모든 전략을 토탈 올인원 솔루션으로 제공합니다.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          transition={{ duration: 0.6, delay: 0.45 }}
         >
-          <Button
-            size="lg"
-            onClick={() =>
-              document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
-            }
+          <button
+            onClick={handleContactClick}
+            className="mx-auto flex items-center justify-center w-36 sm:w-40 h-11 sm:h-12 rounded-full text-white font-semibold text-sm sm:text-base uppercase cursor-pointer border-0 appearance-none"
+            style={{
+              background: "linear-gradient(93deg, #00ffd2b3 -1.1%, #00a1ffb3 101.31%)",
+            }}
           >
-            무료 상담 신청
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-white/30 text-white hover:bg-white hover:text-gray-900"
-            onClick={() =>
-              document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            서비스 알아보기
-          </Button>
+            문의하기
+          </button>
         </motion.div>
       </div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+      >
+        <span className="text-white/40 text-xs tracking-widest uppercase">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.4 }}
+          className="w-px h-8 bg-linear-to-b from-white/40 to-transparent"
+        />
+      </motion.div>
     </section>
   );
 }
