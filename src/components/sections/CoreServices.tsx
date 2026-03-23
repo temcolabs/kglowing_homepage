@@ -31,9 +31,9 @@ export default function CoreServices() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, margin: "40px" }}
           transition={{ duration: 0.5 }}
           className="mb-10 md:mb-14 text-center mx-auto"
         >
@@ -54,10 +54,10 @@ export default function CoreServices() {
           {services.map((service, index) => (
             <motion.button
               key={service.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, margin: "40px" }}
+              transition={{ duration: 0.5, delay: Math.floor(index / 2) * 0.15 }}
               onClick={() => handleScroll(service.id)}
               className="group text-left bg-card rounded-2xl border border-border p-6 md:p-8 hover:border-primary hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 cursor-pointer"
             >
