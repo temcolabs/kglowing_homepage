@@ -22,7 +22,7 @@ export const accountManagementData: ServiceSectionData = {
   eyebrow: "AMAZON ACCOUNT MANAGEMENT SERVICE",
   title: "계정 운영은 더 심플하게, 성장은 더 확실하게",
   description:
-    "아마존 계정 운영은 컴플라이언스, 카탈로그 세팅, 광고 운영, 리포팅까지 복잡하고 손이 많이 갑니다.\nKglowing은 아마존 코리아 출신의 전문적인 운영 인원과 체계적인 전략을 바탕으로, 브랜드가 더 효율적으로 성장할 수 있도록 아마존 계정 전반을 체계적으로 지원합니다.",
+    "아마존 계정 운영은 컴플라이언스, 카탈로그 세팅, 광고 운영, 리포팅까지 복잡하고 손이 많이 갑니다. Kglowing은 아마존 코리아 출신의 전문적인 운영 인원과 체계적인 전략을 바탕으로, 브랜드가 더 효율적으로 성장할 수 있도록 아마존 계정 전반을 체계적으로 지원합니다.",
   statsCards: [
     { label: "성공적으로 운영한 계정 컨설팅", value: "100+" },
     { label: "아마존 마켓플레이스 경험", value: "6+" },
@@ -67,7 +67,7 @@ export const advertisingData: ServiceSectionData = {
   eyebrow: "AMAZON ADVERTISING OPTIMIZATION SERVICE",
   title: "성과 중심 광고 운영 & 매출로 이어지는 성장 전략",
   description:
-    "Amazon Ads 전반을 아우르는 전략을 기반으로, 노출 확대부터 전환 최적화까지 체계적으로 운영합니다.\n캠페인 구조 설계, 예산 관리, 지속적인 데이터 분석을 통해 안정적인 성과와 장기적인 브랜드 성장을 만들어갑니다.",
+    "Amazon Ads 전반을 아우르는 전략을 기반으로, 노출 확대부터 전환 최적화까지 체계적으로 운영합니다. 캠페인 구조 설계, 예산 관리, 지속적인 데이터 분석을 통해 안정적인 성과와 장기적인 브랜드 성장을 만들어갑니다.",
   blocks: [
     {
       title: "Amazon PPC 광고 운영",
@@ -107,7 +107,7 @@ export const logisticsData: ServiceSectionData = {
   eyebrow: "AMAZON LOGISTICS AND INVENTORY MANAGEMENT SERVICE (FBA Prep & Packing)",
   title: "더 효율적인 물류, 더 안정적인 운영",
   description:
-    "입고부터 FBA 운영까지 전 과정을 체계적으로 관리하여, 빠르고 정확한 물류 흐름을 구축합니다.\n재고 계획, 배송 운영, 물류 최적화를 통해 운영 부담은 줄이고 안정적인 성장을 지원합니다.",
+    "입고부터 FBA 운영까지 전 과정을 체계적으로 관리하여, 빠르고 정확한 물류 흐름을 구축합니다. 재고 계획, 배송 운영, 물류 최적화를 통해 운영 부담은 줄이고 안정적인 성장을 지원합니다.",
   blocks: [
     {
       title: "FBA (Fulfillment by Amazon)",
@@ -147,7 +147,7 @@ export const contentServiceData: ServiceSectionData = {
   eyebrow: "ENHANCED BRAND CONTENT SERVICE (Premium A+ Contents 제작, Cataloguing Service)",
   title: "전환을 만드는 A+ 콘텐츠 제작",
   description:
-    "아마존에서는 제품만으로는 충분하지 않습니다. 구매를 결정짓는 것은 설계된 콘텐츠입니다.\nKglowing은 브랜드에 맞는 A+ 콘텐츠를 기획하고, 시각적 완성도와 신뢰를 동시에 높이는 상세페이지를 제작합니다. 스토리텔링, 정보 전달, SEO 요소까지 반영하여 단순 노출을 넘어 실제 구매로 이어지도록 설계합니다.",
+    "아마존에서는 제품만으로는 충분하지 않습니다. 구매를 결정짓는 것은 설계된 콘텐츠입니다. Kglowing은 브랜드에 맞는 A+ 콘텐츠를 기획하고, 시각적 완성도와 신뢰를 동시에 높이는 상세페이지를 제작합니다. 스토리텔링, 정보 전달, SEO 요소까지 반영하여 단순 노출을 넘어 실제 구매로 이어지도록 설계합니다.",
   blocks: [
     {
       title: "브랜드 리포지셔닝 & Market Fit",

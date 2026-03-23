@@ -74,9 +74,8 @@ export default function Contact() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           subtitle="Contact Us"
-          title={<>브랜드를 글로벌로 키우는 방법은 이미 정해져 있습니다.<br />아마존 비즈니스, Kglowing과 함께하세요.</>}
-          description={<>아래 양식을 통해 문의해주시면 가장 빠른 회신을 받으실 수 있습니다.<br />입점, 광고, 콘텐츠까지 나눠서 고민하지 마세요. Kglowing은 매출이 만들어지는 구조를 설계하고 실행합니다.</>}
-          compact
+          title={<>브랜드를 글로벌로 키우는 방법은<br className="md:hidden" /> 이미 정해져 있습니다.<br />아마존 비즈니스, Kglowing과 함께하세요.</>}
+          description={<>아래 양식을 통해 문의해주시면 가장 빠른 회신을 받으실 수 있습니다. 입점, 광고, 콘텐츠까지 나눠서 고민하지 마세요. Kglowing은 매출이 만들어지는 구조를 설계하고 실행합니다.</>}
         />
 
         <motion.form
