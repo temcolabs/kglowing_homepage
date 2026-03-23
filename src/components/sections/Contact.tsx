@@ -18,7 +18,7 @@ const countryOptions = ["북미", "중동", "유럽", "호주"];
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
-  const [showPrivacyText, setShowPrivacyText] = useState(false);
+
 
   const {
     register,
@@ -70,13 +70,12 @@ export default function Contact() {
   const labelClass = "block text-sm font-medium text-foreground mb-1.5";
 
   return (
-    <section id="contact" data-theme="light" className="py-20 md:py-28 bg-muted">
+    <section id="contact" data-theme="light" className="py-16 md:py-28 lg:py-32 bg-muted">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           subtitle="Contact Us"
-          title={<>브랜드를 글로벌로 키우는 방법은 이미 정해져 있습니다.<br />아마존 비즈니스, Kglowing과 함께하세요.</>}
-          description={<>아래 양식을 통해 문의해주시면 가장 빠른 회신을 받으실 수 있습니다.<br />입점, 광고, 콘텐츠까지 나눠서 고민하지 마세요. Kglowing은 매출이 만들어지는 구조를 설계하고 실행합니다.</>}
-          compact
+          title={<>브랜드를 글로벌로 키우는 방법은<br className="md:hidden" /> 이미 정해져 있습니다.<br />아마존 비즈니스, Kglowing과 함께하세요.</>}
+          description={<>아래 양식을 통해 문의해주시면 가장 빠른 회신을 받으실 수 있습니다. 입점, 광고, 콘텐츠까지 나눠서 고민하지 마세요. Kglowing은 매출이 만들어지는 구조를 설계하고 실행합니다.</>}
         />
 
         <motion.form
@@ -210,44 +209,6 @@ export default function Contact() {
             )}
           </div>
 
-          {/* Privacy Agreement */}
-          <div className="mb-8">
-            <label className="flex items-start gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                {...register("privacyAgreed")}
-                className="w-4 h-4 mt-0.5 text-primary rounded focus:ring-primary"
-              />
-              <span className="text-sm text-foreground">
-                개인정보 수집 및 이용에 동의합니다.{" "}
-                <button
-                  type="button"
-                  onClick={() => setShowPrivacyText(!showPrivacyText)}
-                  className="text-primary underline"
-                >
-                  {showPrivacyText ? "닫기" : "자세히 보기"}
-                </button>
-              </span>
-            </label>
-            {errors.privacyAgreed && (
-              <p className={errorClass}>{errors.privacyAgreed.message}</p>
-            )}
-            {showPrivacyText && (
-              <div className="mt-3 p-4 bg-muted rounded-lg text-xs text-muted-foreground leading-relaxed">
-                <p className="font-semibold mb-2">개인정보 수집 및 이용 동의</p>
-                <p>
-                  1. 수집 항목: 회사명, 성함, 연락처, 이메일, 문의 내용
-                  <br />
-                  2. 수집 목적: 서비스 문의 접수 및 상담 진행
-                  <br />
-                  3. 보유 기간: 문의 접수일로부터 1년, 이후 파기
-                  <br />
-                  4. 귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 수 있으며, 동의 거부 시
-                  상담 신청이 제한됩니다.
-                </p>
-              </div>
-            )}
-          </div>
 
           {/* Submit Button & Status */}
           <div className="text-center">

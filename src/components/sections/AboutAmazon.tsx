@@ -29,7 +29,7 @@ const whyCards = [
 
 export default function AboutAmazon() {
   return (
-    <section id="about-amazon" className="py-12 md:py-20 bg-muted">
+    <section id="about-amazon" className="py-16 md:py-28 lg:py-32 bg-muted">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* 섹션 헤더 */}
@@ -52,7 +52,7 @@ export default function AboutAmazon() {
               전문가들과 이커머스 No.1
             </h3>
             <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-              아마존 출신 이커머스 전문가와 함께 북미부터 유럽, 중동 호주까지 빠르게 시장을 확장해 보세요.
+              아마존 출신 이커머스 전문가와 함께 북미부터 유럽, 중동, 호주까지 빠르게 시장을 확장해 보세요.
               글로벌 시장에서 폭발적인 성장을 이끄는 가장 효과적인 플랫폼, 아마존이 그 시작점입니다.
             </p>
           </motion.div>

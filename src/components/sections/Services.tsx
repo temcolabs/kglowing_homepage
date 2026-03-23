@@ -44,12 +44,12 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 md:py-28 bg-muted">
+    <section id="services" className="py-16 md:py-28 lg:py-32 bg-muted">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           subtitle="Services"
           title="제공 서비스"
-          description="아마존 셀링의 A to Z, KGlowing이 함께합니다."
+          description="아마존 셀링의 A to Z, Kglowing이 함께합니다."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Dashboard() {
   return (
-    <section id="case-study-dashboard" className="py-12 md:py-20 bg-muted">
+    <section id="case-study-dashboard" className="py-16 md:py-28 lg:py-32 bg-muted">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <motion.div
@@ -13,7 +13,7 @@ export default function Dashboard() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="mb-8 md:mb-12"
+          className="mb-8 md:mb-12 text-center"
         >
           <p className="text-primary text-xs font-semibold tracking-widest uppercase mb-3">
             ANALYTICS DASHBOARD

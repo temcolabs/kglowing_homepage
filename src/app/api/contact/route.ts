@@ -103,7 +103,6 @@ export async function POST(request: Request) {
       service: formData.get("service") as string,
       countries: JSON.parse((formData.get("countries") as string) || "[]"),
       message: formData.get("message") as string,
-      privacyAgreed: true,
     };
 
     const result = contactSchema.safeParse(rawData);

@@ -123,12 +123,12 @@ export default function AmazonDetail() {
   return (
     <>
       {/* 아마존 계정 관리 섹션 */}
-      <section className="py-20 md:py-28 bg-gray-900">
+      <section className="py-16 md:py-28 lg:py-32 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             subtitle="Account Management"
             title="아마존 계정, 처음부터 끝까지 함께합니다"
-            description="계정 설정부터 성과 분석까지 아마존 운영의 모든 과정을 KGlowing이 전문적으로 대행합니다."
+            description="계정 설정부터 성과 분석까지 아마존 운영의 모든 과정을 Kglowing이 전문적으로 대행합니다."
             light
           />
 
@@ -141,7 +141,7 @@ export default function AmazonDetail() {
       </section>
 
       {/* 광고 서비스 섹션 */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+      <section className="py-16 md:py-28 lg:py-32 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             subtitle="Advertising"

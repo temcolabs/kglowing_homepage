@@ -49,7 +49,7 @@ export default function Hero() {
           className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto mb-3"
         >
           Kglowing은 아마존 성장을 가장 잘 이해하는 전문 파트너로서, 전략부터 실행까지
-          <br />
+          <br className="hidden sm:block" />
           모든 과정을 통합적으로 지원합니다.
         </motion.p>
 

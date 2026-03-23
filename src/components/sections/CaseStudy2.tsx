@@ -12,7 +12,7 @@ const brands = [
 
 export default function CaseStudy2() {
   return (
-    <section id="case-study-2" className="py-12 md:py-20 bg-background">
+    <section id="case-study-2" className="py-16 md:py-28 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <motion.div
@@ -46,7 +46,7 @@ export default function CaseStudy2() {
                 alt={`${brand.name} RoAS 차트`}
                 width={400}
                 height={300}
-                className="w-full h-auto rounded-xl"
+                className="w-full h-auto"
               />
               {/* 브랜드명 */}
               <p className="text-center font-semibold text-foreground text-sm">
