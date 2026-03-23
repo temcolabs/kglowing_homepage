@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import PrivacyPolicyModal from "@/components/ui/PrivacyPolicyModal";
 
 const footerLinks = [
   { label: "About", href: "#about" },
@@ -10,6 +14,8 @@ const footerLinks = [
 ];
 
 export default function Footer() {
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+
   return (
     <footer className="bg-card text-muted-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
@@ -57,12 +63,19 @@ export default function Footer() {
 
         <div className="border-t border-border mt-10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Kglowing. All rights reserved.</p>
-          {/* <div className="flex gap-4">
-            <a href="#" className="hover:text-foreground transition-colors">개인정보처리방침</a>
-            <a href="#" className="hover:text-foreground transition-colors">이용약관</a>
-          </div> */}
+          <div className="flex gap-4">
+            <button
+              type="button"
+              onClick={() => setShowPrivacyModal(true)}
+              className="hover:text-foreground transition-colors cursor-pointer bg-transparent border-0 text-xs text-muted-foreground p-0"
+            >
+              개인정보처리방침
+            </button>
+          </div>
         </div>
       </div>
+
+      <PrivacyPolicyModal isOpen={showPrivacyModal} onClose={() => setShowPrivacyModal(false)} />
     </footer>
   );
 }

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const brands = [
-  { name: "화장품 L사", chart: "/images/case-study/img_chart1.png" },
+  { name: "화장품 N사", chart: "/images/case-study/img_chart1.png" },
   { name: "화장품 T사", chart: "/images/case-study/img_chart2.png" },
   { name: "건기식 R사", chart: "/images/case-study/img_chart3.png" },
   { name: "애완용품 S사", chart: "/images/case-study/img_chart4.png" },

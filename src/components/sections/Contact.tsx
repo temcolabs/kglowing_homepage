@@ -6,18 +6,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { contactSchema, type ContactFormValues } from "@/lib/validations";
 import SectionTitle from "@/components/ui/SectionTitle";
+import PrivacyPolicyModal from "@/components/ui/PrivacyPolicyModal";
 
 
-const serviceOptions = [
-  "아마존 신규 입점",
-  "아마존 운영 대행 (입점 완료)",
-];
+const amazonStatusOptions = ["입점 전", "입점 완료", "일부 판매 중"];
 
-const countryOptions = ["북미", "중동", "유럽", "호주"];
+const serviceOptions = ["입점", "운영대행", "광고", "콘텐츠 제작", "컨설팅"];
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
 
   const {
@@ -28,7 +27,9 @@ export default function Contact() {
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      countries: [],
+      services: [],
+      amazonStatus: "입점 전",
+      privacyAgreement: undefined as unknown as true,
     },
   });
 
@@ -42,8 +43,9 @@ export default function Contact() {
       formData.append("name", data.name);
       formData.append("phone", data.phone);
       formData.append("email", data.email);
-      formData.append("service", data.service);
-      formData.append("countries", JSON.stringify(data.countries));
+      formData.append("amazonStatus", data.amazonStatus);
+      formData.append("services", JSON.stringify(data.services));
+      formData.append("privacyAgreement", String(data.privacyAgreement));
       formData.append("message", data.message);
 
       const res = await fetch("/api/contact", {
@@ -90,7 +92,7 @@ export default function Contact() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label className={labelClass}>
-                브랜드 홈페이지 주소 <span className="text-red-500">*</span>
+                브랜드명 또는 홈페이지 주소 <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -141,55 +143,55 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* 희망 서비스 - Radio */}
+          {/* 아마존 입점 여부 - Radio */}
+          <div className="mb-6">
+            <label className={labelClass}>
+              아마존 입점 여부 <span className="text-red-500">*</span>
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
+              {amazonStatusOptions.map((status) => (
+                <label
+                  key={status}
+                  className="flex items-center gap-2 p-3 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    value={status}
+                    {...register("amazonStatus")}
+                    className="w-4 h-4 text-primary focus:ring-primary"
+                  />
+                  <span className="text-sm text-foreground">{status}</span>
+                </label>
+              ))}
+            </div>
+            {errors.amazonStatus && (
+              <p className={errorClass}>{errors.amazonStatus.message}</p>
+            )}
+          </div>
+
+          {/* 희망 서비스 - Checkbox */}
           <div className="mb-6">
             <label className={labelClass}>
               희망 서비스 <span className="text-red-500">*</span>
             </label>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-2">
               {serviceOptions.map((service) => (
                 <label
                   key={service}
                   className="flex items-center gap-2 p-3 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors cursor-pointer"
                 >
                   <input
-                    type="radio"
+                    type="checkbox"
                     value={service}
-                    {...register("service")}
-                    className="w-4 h-4 text-primary focus:ring-primary"
+                    {...register("services")}
+                    className="w-4 h-4 text-primary rounded focus:ring-primary"
                   />
                   <span className="text-sm text-foreground">{service}</span>
                 </label>
               ))}
             </div>
-            {errors.service && (
-              <p className={errorClass}>{errors.service.message}</p>
-            )}
-          </div>
-
-          {/* 희망 진출 국가 - Checkbox */}
-          <div className="mb-6">
-            <label className={labelClass}>
-              희망 진출 국가 <span className="text-red-500">*</span>
-            </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mt-2">
-              {countryOptions.map((country) => (
-                <label
-                  key={country}
-                  className="flex items-center gap-2 p-3 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    value={country}
-                    {...register("countries")}
-                    className="w-4 h-4 text-primary rounded focus:ring-primary"
-                  />
-                  <span className="text-sm text-foreground">{country}</span>
-                </label>
-              ))}
-            </div>
-            {errors.countries && (
-              <p className={errorClass}>{errors.countries.message}</p>
+            {errors.services && (
+              <p className={errorClass}>{errors.services.message}</p>
             )}
           </div>
 
@@ -209,6 +211,32 @@ export default function Contact() {
             )}
           </div>
 
+
+          {/* 개인정보 수집 동의 */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  {...register("privacyAgreement")}
+                  className="w-4 h-4 text-primary rounded focus:ring-primary"
+                />
+                <span className="text-sm text-foreground">
+                  개인정보 수집에 동의합니다. <span className="text-red-500">*</span>
+                </span>
+              </label>
+              <button
+                type="button"
+                onClick={() => setShowPrivacyModal(true)}
+                className="text-sm text-primary underline underline-offset-2 hover:text-primary/80 transition-colors cursor-pointer"
+              >
+                개인정보 수집 내용보기
+              </button>
+            </div>
+            {errors.privacyAgreement && (
+              <p className={errorClass}>{errors.privacyAgreement.message}</p>
+            )}
+          </div>
 
           {/* Submit Button & Status */}
           <div className="text-center">
@@ -245,6 +273,9 @@ export default function Contact() {
           </div>
         </motion.form>
       </div>
+
+      {/* 개인정보처리방침 모달 */}
+      <PrivacyPolicyModal isOpen={showPrivacyModal} onClose={() => setShowPrivacyModal(false)} />
     </section>
   );
 }
