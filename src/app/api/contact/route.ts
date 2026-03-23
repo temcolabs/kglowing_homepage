@@ -34,14 +34,14 @@ async function sendEmail(data: {
   name: string;
   phone: string;
   email: string;
-  service: string;
-  countries: string[];
+  amazonStatus: string;
+  services: string[];
   message: string;
 }) {
   const accessToken = await getAccessToken();
   const senderEmail = process.env.SENDER_EMAIL!;
 
-  const countriesText = data.countries.join(", ");
+  const servicesText = data.services.join(", ");
 
   const emailBody = `
 <html>
@@ -52,8 +52,8 @@ async function sendEmail(data: {
     <tr><td style="padding: 8px; border: 1px solid #ddd; background: #f9f9f9;"><b>담당자명</b></td><td style="padding: 8px; border: 1px solid #ddd;">${data.name}</td></tr>
     <tr><td style="padding: 8px; border: 1px solid #ddd; background: #f9f9f9;"><b>연락처</b></td><td style="padding: 8px; border: 1px solid #ddd;">${data.phone}</td></tr>
     <tr><td style="padding: 8px; border: 1px solid #ddd; background: #f9f9f9;"><b>이메일</b></td><td style="padding: 8px; border: 1px solid #ddd;">${data.email}</td></tr>
-    <tr><td style="padding: 8px; border: 1px solid #ddd; background: #f9f9f9;"><b>희망 서비스</b></td><td style="padding: 8px; border: 1px solid #ddd;">${data.service}</td></tr>
-    <tr><td style="padding: 8px; border: 1px solid #ddd; background: #f9f9f9;"><b>희망 진출 국가</b></td><td style="padding: 8px; border: 1px solid #ddd;">${countriesText}</td></tr>
+    <tr><td style="padding: 8px; border: 1px solid #ddd; background: #f9f9f9;"><b>아마존 입점 여부</b></td><td style="padding: 8px; border: 1px solid #ddd;">${data.amazonStatus}</td></tr>
+    <tr><td style="padding: 8px; border: 1px solid #ddd; background: #f9f9f9;"><b>희망 서비스</b></td><td style="padding: 8px; border: 1px solid #ddd;">${servicesText}</td></tr>
     <tr><td style="padding: 8px; border: 1px solid #ddd; background: #f9f9f9;"><b>문의 내용</b></td><td style="padding: 8px; border: 1px solid #ddd;">${data.message.replace(/\n/g, "<br>")}</td></tr>
   </table>
 </body>
@@ -100,9 +100,10 @@ export async function POST(request: Request) {
       name: formData.get("name") as string,
       phone: formData.get("phone") as string,
       email: formData.get("email") as string,
-      service: formData.get("service") as string,
-      countries: JSON.parse((formData.get("countries") as string) || "[]"),
+      amazonStatus: formData.get("amazonStatus") as string,
+      services: JSON.parse((formData.get("services") as string) || "[]"),
       message: formData.get("message") as string,
+      privacyAgreement: formData.get("privacyAgreement") === "true",
     };
 
     const result = contactSchema.safeParse(rawData);
@@ -113,7 +114,8 @@ export async function POST(request: Request) {
       );
     }
 
-    await sendEmail(result.data);
+    const { privacyAgreement: _, ...emailData } = result.data;
+    await sendEmail(emailData);
 
     return NextResponse.json(
       { message: "문의가 성공적으로 접수되었습니다." },
