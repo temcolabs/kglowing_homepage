@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   title: "글로벌 바이럴 마케팅부터 아마존 성공을 위한 가장 가까운 브랜드 파트너 | 케이글로잉",
   description:
     "국내 브랜드의 글로벌 진출, 검증된 바이럴 전략과 아마존 최적화 솔루션을 통해 확신을 드립니다. 케이글로잉의 맞춤형 파트너십으로 브랜드 성장의 목표를 이루세요.",
+  verification: {
+    other: {
+      "naver-site-verification": "42678e6288b75413de2183adfd233f89dd798693",
+    },
+  },
   openGraph: {
     title: "글로벌 바이럴 마케팅부터 아마존 성공을 위한 가장 가까운 브랜드 파트너 | 케이글로잉",
     description:
