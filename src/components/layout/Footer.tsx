@@ -52,7 +52,7 @@ export default function Footer() {
             <p className="text-foreground font-semibold mb-4 text-sm">회사 정보</p>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>주식회사 구하다<span className="mx-1">ㅣ</span>대표 : 윤재섭</li>
-              <li>대표 전화 : 02-558-0412</li>
+              <li>대표 전화 : 02-2038-8823</li>
               <li>메일 : official@kglowing.com</li>
               <li>주소 : 경기도 성남시 분당구 이매로 45, 이수프라자 5층 507호</li>
               <li>사업자 등록번호 : 876-86-01259</li>
