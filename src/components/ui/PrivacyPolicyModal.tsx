@@ -244,7 +244,7 @@ export default function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyMod
                 <div className="mt-2 p-3 bg-[#f1f5f9] rounded-lg space-y-1">
                   <p className="font-semibold">개인정보관리 책임자</p>
                   <p>성명 : 윤재섭</p>
-                  <p>전화번호 : 02-558-0412</p>
+                  <p>전화번호 : 02-2038-8823</p>
                   <p>이메일 : official@kglowing.com</p>
                 </div>
                 <p className="mt-3">
